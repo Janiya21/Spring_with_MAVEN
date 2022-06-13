@@ -3,14 +3,17 @@ package lk.ijse.spring.dto;
 public class CustomerDTO {
     private String id;
     private String name;
-    private String address;
-    private double salary;
+    private String email;
+    private String telNo;
 
-    public CustomerDTO(String id, String name, String address, double salary) {
+    public CustomerDTO() {
+    }
+
+    public CustomerDTO(String id, String name, String email, String telNo) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.salary = salary;
+        this.email = email;
+        this.telNo = telNo;
     }
 
     public String getId() {
@@ -29,20 +32,20 @@ public class CustomerDTO {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public double getSalary() {
-        return salary;
+    public String getTelNo() {
+        return telNo;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setTelNo(String telNo) {
+        this.telNo = telNo;
     }
 
     @Override
@@ -50,8 +53,8 @@ public class CustomerDTO {
         return "CustomerDTO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", salary=" + salary +
+                ", email='" + email + '\'' +
+                ", telNo=" + telNo +
                 '}';
     }
 }
