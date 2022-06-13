@@ -21,7 +21,14 @@ public class CustomerController {
         return new CustomerDTO("C001","Text","Panadura",1000);
     }
 
+    @GetMapping(consumes = "application/json",produces = "application/json")
+    public CustomerDTO testMethodTwo(){
+        return new CustomerDTO("C002","JSON","Panadura",1000);
+    }
 
-
+    @GetMapping(headers = {"Content-Type=text/css","Accept=application/json"})
+    public CustomerDTO testMethodThree(){
+        return new CustomerDTO("C003","JSON","Panadura",1000);
+    }
 
 }
