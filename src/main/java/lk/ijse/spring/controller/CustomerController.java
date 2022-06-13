@@ -15,4 +15,13 @@ public class CustomerController {
     public CustomerDTO getAllCustomers(){
         return new CustomerDTO("C001","Janith","Colombo",120000);
     }
+
+    @GetMapping(consumes = "text/html",produces = "application/json")
+    public CustomerDTO testMethodOne(){
+        return new CustomerDTO("C001","Text","Panadura",1000);
+    }
+
+
+
+
 }
