@@ -3,16 +3,18 @@ package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.CustomerDTO;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("customer")
+@CrossOrigin
 public class CustomerController {
 
     /*@GetMapping(consumes = "text/html",produces = "application/json")
@@ -31,13 +33,44 @@ public class CustomerController {
     }*/
 
     @GetMapping(produces = "application/json")
-    public CustomerDTO getAllCustomers(HttpServletRequest request, HttpServletResponse response){
+    public ArrayList<CustomerDTO> getAllCustomers(){
+        ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
+        customerDTOS.add(new CustomerDTO("C001","Janith","Jani@gmail.com","0112509821"));
+        customerDTOS.add(new CustomerDTO("C002","Dasun","Dassa@gmail.com","011232821"));
+        return customerDTOS;
+    }
 
-        response.addHeader("Access-Control-Allow-Origin","*");
-        response.addHeader("Access-Control-Allow-Methods","DELETE,PUT");
-        response.addHeader("Access-Control-Allow-Headers","Content-Type");
+    @PostMapping(consumes = {"application/x-www-form-urlencoded"})
+    public boolean saveCustomer(HttpServletRequest req, @ModelAttribute CustomerDTO dto) throws IOException {
 
-        return new CustomerDTO("C001","Janith","Jani@gmail.com","0112509821");
+        /*String customerId = req.getParameter("customerId");
+        String customerName = req.getParameter("customerName");
+        String customerEmail = req.getParameter("customerEmail");
+        String customerTelNo = req.getParameter("customerTelNo");
+
+        System.out.println(customerId + " " + customerName + " " + customerEmail + " " + customerTelNo);*/
+
+        System.out.println(dto.toString());
+
+        return true;
+    }
+
+    @GetMapping(path = {"/{id}"})
+    public CustomerDTO searchCustomer(@PathVariable String id){
+        return new CustomerDTO(id,"xxxxxxxx","xx@xx.com","+94 xxxxxxxxx");
+    }
+
+    @DeleteMapping(params = {"id"})
+    public boolean deleteCustomer(String id){
+        System.out.println("Delete ID " + id);
+
+        return true;
+    }
+
+    @PutMapping(consumes = {"application/json"}, produces = "application/json")
+    public CustomerDTO updateCustomer(@RequestBody CustomerDTO dto){
+        System.out.println(dto.toString());
+        return dto;
     }
 
 }
