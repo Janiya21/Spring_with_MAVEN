@@ -9,9 +9,5 @@ import java.util.List;
  * @since : 0.1.0
  **/
 public interface CustomerService {
-    void saveCustomer(Customer entity);
-    void deleteCustomer(String id);
-    void updateCustomer(Customer entity);
-    Customer searchCustomer(String id);
-    List<Customer> getAllCustomers();
+
 }
