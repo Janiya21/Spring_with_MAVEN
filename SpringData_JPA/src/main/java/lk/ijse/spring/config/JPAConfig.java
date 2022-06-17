@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +22,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "lk.ijse.spring.repo")
+@EnableTransactionManagement
 public class JPAConfig {
 
     @Autowired
@@ -39,10 +41,10 @@ public class JPAConfig {
     public DataSource dataSource() throws NamingException {
         //Driver Manager Data Source
         DriverManagerDataSource dataSource= new DriverManagerDataSource();
-        dataSource.setUrl(env.getRequiredProperty("my.app.url"));
-        dataSource.setUsername(env.getRequiredProperty("my.app.username"));
-        dataSource.setPassword(env.getRequiredProperty("my.app.password"));
-        dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
+        dataSource.setUrl("jdbc:mysql://localhost:3306/springJPA?createDatabaseIfNotExist=true");
+        dataSource.setUsername("root");
+        dataSource.setPassword("Janith20010121");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return dataSource;
 
         // JNDI data source
@@ -52,7 +54,7 @@ public class JPAConfig {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter vendor = new HibernateJpaVendorAdapter();
-        vendor.setDatabasePlatform(env.getRequiredProperty("my.app.dialect"));
+        vendor.setDatabasePlatform("org.hibernate.dialect.MySQL57Dialect");
         vendor.setDatabase(Database.MYSQL);
         vendor.setShowSql(true);
         vendor.setGenerateDdl(true);
