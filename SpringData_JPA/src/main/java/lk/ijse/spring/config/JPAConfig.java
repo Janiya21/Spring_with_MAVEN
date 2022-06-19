@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -23,6 +24,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(basePackages = "lk.ijse.spring.repo")
 @EnableTransactionManagement
+@PropertySource("classpath:application.properties")
 public class JPAConfig {
 
     @Autowired
@@ -39,6 +41,7 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() throws NamingException {
+
         /*//Driver Manager Data Source
         DriverManagerDataSource dataSource= new DriverManagerDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/springJPA?createDatabaseIfNotExist=true");
@@ -48,16 +51,15 @@ public class JPAConfig {
         return dataSource;*/
 
         //Driver Manager Data Source
-        DriverManagerDataSource dataSource= new DriverManagerDataSource();
+        /*DriverManagerDataSource dataSource= new DriverManagerDataSource();
         dataSource.setUrl(env.getRequiredProperty("my.app.url"));
         dataSource.setUsername(env.getRequiredProperty("my.app.username"));
         dataSource.setPassword(env.getRequiredProperty("my.app.password"));
         dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
-        return dataSource;
-
+        return dataSource;*/
 
         // JNDI data source
-        // return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");
+         return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");
     }
 
     @Bean
