@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -40,13 +41,13 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource() throws NamingException {
 
-        /*//Driver Manager Data Source
+        //Driver Manager Data Source
         DriverManagerDataSource dataSource= new DriverManagerDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/springJPA?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("Janith20010121");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        return dataSource;*/
+        return dataSource;
 
         //Driver Manager Data Source
         /*DriverManagerDataSource dataSource= new DriverManagerDataSource();
@@ -57,7 +58,7 @@ public class JPAConfig {
         return dataSource;*/
 
         // JNDI data source
-         return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");
+        // return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");
     }
 
     @Bean
