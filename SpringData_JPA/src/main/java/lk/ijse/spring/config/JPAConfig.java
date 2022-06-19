@@ -39,13 +39,22 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() throws NamingException {
-        //Driver Manager Data Source
+        /*//Driver Manager Data Source
         DriverManagerDataSource dataSource= new DriverManagerDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/springJPA?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("Janith20010121");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        return dataSource;*/
+
+        //Driver Manager Data Source
+        DriverManagerDataSource dataSource= new DriverManagerDataSource();
+        dataSource.setUrl(env.getRequiredProperty("my.app.url"));
+        dataSource.setUsername(env.getRequiredProperty("my.app.username"));
+        dataSource.setPassword(env.getRequiredProperty("my.app.password"));
+        dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
         return dataSource;
+
 
         // JNDI data source
         // return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");

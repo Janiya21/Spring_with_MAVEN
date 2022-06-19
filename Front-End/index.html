@@ -534,11 +534,11 @@
     function loadAllCustomers() {
         $("#customer-body").empty();
         $.ajax({
-            url: "http://localhost:8081/Spring_with_Maven_war/customer",
+            url: "http://localhost:8081/jpa/customer",
             method: "GET",
             success: function (resp) {
                 for (const customer of resp) {
-                    let row = `<tr><td>${customer.id}</td><td>${customer.name}</td><td>${customer.email}</td><td>${customer.telNo}</td></tr>`;
+                    let row = `<tr><td>${customer.id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.telNo}</td></tr>`;
                     $("#customerTable").append(row);
                 }
 
@@ -552,7 +552,7 @@
     $("#addNewCustomer").click(function (){
         let data = $("#customerForm").serialize();
         $.ajax({
-            url: "http://localhost:8081/Spring_with_Maven_war/customer",
+            url: "http://localhost:8081/jpa/customer",
             method: "POST",
             //contentType:"application/json",
             data:data,
@@ -571,7 +571,7 @@
         let customerID = $("#txtCustomerId").val();
 
         $.ajax({
-            url:"http://localhost:8081/Spring_with_Maven_war/customer?id="+customerID,
+            url:"http://localhost:8081/jpa/customer?id="+customerID,
             method: "DELETE",
             success:function (res){
                 console.log(res);
@@ -601,7 +601,7 @@
         }
 
         $.ajax({
-            url: "http://localhost:8081/mypos/customer",
+            url: "http://localhost:8081/jpa/customer",
             method: "PUT",
             contentType: "application/json",
             data: JSON.stringify(cusOb), // format js object to valid json string
