@@ -537,7 +537,7 @@
             url: "http://localhost:8081/mapper/customer",
             method: "GET",
             success: function (resp) {
-                for (const customer of resp) {
+                for (const customer of resp.data) {
                     let row = `<tr><td>${customer.id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.telNo}</td></tr>`;
                     $("#customerTable").append(row);
                 }
@@ -554,11 +554,11 @@
         $.ajax({
             url: "http://localhost:8081/mapper/customer",
             method: "POST",
-            contentType:"application/x-www-form-urlencoded",
+            // contentType:"application/x-www-form-urlencoded",
             data:data,
             success:function (res){
-                if (res.status === 200) {
-                    alert("added done !");
+                if (res.code === 200) {
+                    alert(res.message);
                     loadAllCustomers();
                 } else {
                     alert(res.data);
@@ -574,12 +574,9 @@
             url:"http://localhost:8081/mapper/customer?id="+customerID,
             method: "DELETE",
             success:function (res){
-                console.log(res);
-                if (res.status === 200) {
+                if (res.code === 200) {
                     alert(res.message);
                     loadAllCustomers();
-                } else if (res.status === 400) {
-                    alert(res.data);
                 } else {
                     alert(res.data);
                 }
@@ -606,11 +603,9 @@
             contentType: "application/json",
             data: JSON.stringify(cusOb), // format js object to valid json string
             success: function (res) {
-                if (res.status === 200) {
+                if (res.code === 200) {
                     alert(res.message);
                     loadAllCustomers();
-                } else if (res.status === 400) {
-                    alert(res.message);
                 } else {
                     alert(res.data);
                 }
