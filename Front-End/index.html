@@ -221,7 +221,7 @@
                         <label for="txtCustomerId" class="form-label">Customer Id</label>
                         <div class="row">
                             <div class="col-10">
-                                <input type="text" class="form-control" name="customerId" id="txtCustomerId" aria-describedby="telHelp" placeholder="Customer Id">
+                                <input type="text" class="form-control" name="id" id="txtCustomerId" aria-describedby="telHelp" placeholder="Customer Id">
                             </div>
                             <div class="col-1">
                                 <button type="button" style="border-radius: 40%">
@@ -233,17 +233,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="txtCustomerName" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="customerName" id="txtCustomerName" aria-describedby="nameHelp" placeholder="Customer Name">
+                        <input type="text" class="form-control" name="name" id="txtCustomerName" aria-describedby="nameHelp" placeholder="Customer Name">
                         <p class="text-danger float-end txtReq" id="req-txtCusName"></p>
                     </div>
                     <div class="mb-3">
                         <label for="txtEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" name="customerEmail" id="txtEmail" aria-describedby="emailHelp" placeholder="Email Address">
+                        <input type="email" class="form-control" name="address" id="txtEmail" aria-describedby="emailHelp" placeholder="Email Address">
                         <p class="text-danger float-end txtReq" id="req-txtCusAddress"></p>
                     </div>
                     <div class="mb-3">
                         <label for="txtTelNo" class="form-label">Tel No</label>
-                        <input type="text" class="form-control" name="customerTelNo" id="txtTelNo" aria-describedby="telHelp" placeholder="Telephone">
+                        <input type="text" class="form-control" name="telNo" id="txtTelNo" aria-describedby="telHelp" placeholder="Telephone">
                         <p class="text-danger float-end txtReq" id="req-txtCusTel"></p>
                     </div>
 
@@ -534,7 +534,7 @@
     function loadAllCustomers() {
         $("#customer-body").empty();
         $.ajax({
-            url: "http://localhost:8081/jpa/customer",
+            url: "http://localhost:8081/mapper/customer",
             method: "GET",
             success: function (resp) {
                 for (const customer of resp) {
@@ -552,9 +552,9 @@
     $("#addNewCustomer").click(function (){
         let data = $("#customerForm").serialize();
         $.ajax({
-            url: "http://localhost:8081/jpa/customer",
+            url: "http://localhost:8081/mapper/customer",
             method: "POST",
-            //contentType:"application/json",
+            contentType:"application/x-www-form-urlencoded",
             data:data,
             success:function (res){
                 if (res.status === 200) {
@@ -571,7 +571,7 @@
         let customerID = $("#txtCustomerId").val();
 
         $.ajax({
-            url:"http://localhost:8081/jpa/customer?id="+customerID,
+            url:"http://localhost:8081/mapper/customer?id="+customerID,
             method: "DELETE",
             success:function (res){
                 console.log(res);
@@ -597,11 +597,11 @@
             id: $("#txtCustomerId").val(),
             name: $("#txtCustomerName").val(),
             address: $("#txtEmail").val(),
-            salary: $("#txtTelNo").val()
+            telNo: $("#txtTelNo").val()
         }
 
         $.ajax({
-            url: "http://localhost:8081/jpa/customer",
+            url: "http://localhost:8081/mapper/customer",
             method: "PUT",
             contentType: "application/json",
             data: JSON.stringify(cusOb), // format js object to valid json string

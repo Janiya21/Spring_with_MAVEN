@@ -5,6 +5,7 @@ import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,12 +68,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> all = repo.findAll();
-        List<CustomerDTO> customerDTOS = new ArrayList<>();
+
+        /*List<CustomerDTO> customerDTOS = new ArrayList<>();
 
         for (Customer cus : all) {
             // customerDTOS.add(new CustomerDTO(cus.getId(),cus.getName(),cus.getAddress(),cus.getTelNo()));
             customerDTOS.add(mapper.map(cus,CustomerDTO.class));
         }
-        return customerDTOS;
+        return customerDTOS;*/
+
+        return mapper.map(all,new TypeToken<List<CustomerDTO>>(){}.getType());
     }
 }

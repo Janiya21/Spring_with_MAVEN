@@ -68,6 +68,7 @@ public class CustomerController {
 
     @PostMapping
     public void saveCustomer(@ModelAttribute CustomerDTO customer) {
+        System.out.println(customer.toString());
         customerService.saveCustomer(customer);
     }
 
