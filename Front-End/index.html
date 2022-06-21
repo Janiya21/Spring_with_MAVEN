@@ -545,6 +545,8 @@
                 $("#customer-body>tr").click(function (){
                     loadCustomersToTextFields(this);
                 });
+            },error: function (ob, errorStus) {
+                alert(ob.responseJSON.message);
             }
         });
     }
@@ -561,8 +563,11 @@
                     alert(res.message);
                     loadAllCustomers();
                 } else {
-                    alert(res.data);
+                    alert(res.message);
                 }
+            },
+            error: function (ob, errorStus) {
+                alert(ob.responseJSON.message);
             }
         })
     });
@@ -581,10 +586,8 @@
                     alert(res.data);
                 }
             },
-            error:function (ob, status, t){
-                console.log(ob);
-                console.log(status);
-                console.log(t);
+            error: function (ob, errorStus) {
+                alert(ob.responseJSON.message);
             }
         })
     });
@@ -611,7 +614,7 @@
                 }
             },
             error: function (ob, errorStus) {
-                console.log(ob);
+                alert(ob.responseJSON.message);
             }
         });
     });
