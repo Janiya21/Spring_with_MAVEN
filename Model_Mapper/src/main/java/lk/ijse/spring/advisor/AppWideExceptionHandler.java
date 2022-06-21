@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class AppWideExceptionHandler {
 
-    @ExceptionHandler({Exception.class})
+    /*@ExceptionHandler({Exception.class})
     public ResponseEntity<ResponseUtil> exceptionHandler(Exception e) {
         //return new ResponseUtil(500, e.getMessage(), null);
         return new ResponseEntity(new ResponseUtil(500, e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 
-    /*@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Exception.class})
     public ResponseUtil exceptionHandler(Exception e) {
         return new ResponseUtil(500, e.getMessage(), null);
-    }*/
+    }
 
 }
