@@ -84,6 +84,14 @@ class CustomerRepoTest {
     }
 
     @Test
+    public void searchByName(){
+        List<Customer> customers = customerRepo.searchByName("Dasun");
+        for (Customer customer : customers) {
+            System.out.println(customer.toString());
+        }
+    }
+
+    @Test
     public void t1(){
         Customer c1 = customerRepo.findByName("Dasun");
         System.out.println(c1.toString());
@@ -97,11 +105,57 @@ class CustomerRepoTest {
         Customer c4 = customerRepo.queryByName("Dasun");
         System.out.println(c4.toString());
 
-        Customer c5 = customerRepo.searchByName("Kasun");
-        System.out.println(c5.toString());
+        /*Customer c5 = customerRepo.searchByName("Kasun");
+        System.out.println(c5.toString());*/
 
         Customer c6 = customerRepo.streamByName("Kasun");
         System.out.println(c6.toString());
+    }
+
+    @Test
+    public void testCountBy(){
+        long rec = customerRepo.countByName("Suren");
+        System.out.println(rec);
+    }
+
+    @Test
+    public void testExistBy(){
+        boolean b = customerRepo.existsByNameAndAddress("Suren", "Suren81@gmail.com");
+        System.out.println(b);
+    }
+
+    @Test
+    public void textQueryOne(){
+        List<Customer> allCustomers = customerRepo.getAllCustomers();
+        allCustomers.forEach(v->{
+            System.out.println(v.toString());
+        });
+    }
+
+    @Test
+    public void textQueryTwo(){
+        List<Customer> allCustomers = customerRepo.getAllCustomersWithJPQL();
+        allCustomers.forEach(v->{
+            System.out.println(v.toString());
+        });
+    }
+
+    @Test
+    public void textQueryFour(){
+        Customer customer = customerRepo.searchCustomerFromName("Linton","Lita56@gmail.com");
+        System.out.println(customer.toString());
+    }
+
+    @Test
+    public void textQueryFive(){
+        Customer customer = customerRepo.searchCustomerFromNameWithNamedPara("Kamal","Galle");
+        System.out.println(customer.toString());
+    }
+
+    @Test
+    public void textQuerySix(){
+        Customer customer = customerRepo.getAllCustomersWithJPQLWithParams("C001");
+        System.out.println(customer.toString());
     }
 
 }
