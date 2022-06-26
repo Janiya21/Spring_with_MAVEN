@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/../Model_Mapper" />
     <file type="web" url="file://$PROJECT_DIR$/../Spring_POS" />
     <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="file://$PROJECT_DIR$/../SpringBoot" />
     <file type="web" url="file://$PROJECT_DIR$/../SpringData_JPA" />
   </component>
   <component name="MavenProjectsManager">
@@ -14,6 +15,7 @@
         <option value="$PROJECT_DIR$/../SpringData_JPA/pom.xml" />
         <option value="$PROJECT_DIR$/../Model_Mapper/pom.xml" />
         <option value="$PROJECT_DIR$/../Spring_POS/pom.xml" />
+        <option value="$PROJECT_DIR$/../SpringBoot/pom.xml" />
       </list>
     </option>
   </component>

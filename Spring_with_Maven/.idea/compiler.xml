@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Model_Mapper" />
         <module name="Spring_POS" />
+        <module name="SpringBoot" />
         <module name="Spring_with_Maven" />
         <module name="SpringData_JPA" />
       </profile>
